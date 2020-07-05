@@ -1,0 +1,9 @@
+---
+- hosts: Test_Servers
+  vars:
+   test1: "Hello Vivek"
+  tasks:
+  - name: Testing Ansible variable
+  debug:
+   msg: "Equals"
+  when: test1 == "Hello Vivek"

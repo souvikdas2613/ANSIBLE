@@ -1,0 +1,35 @@
+---
+- hosts: Test_Servers
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+  - name: ensure apache is running (and enable it at boot)
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: install php
+    yum:
+      name: php
+      state: latest
+  - name: install php-mysqlnd,php-pdo
+    yum:
+      name: php-mysqlnd,php-pdo
+      state: latest
+#  - name: UPDATE YUM
+#    yum:
+#      name: "*"
+#      state: latest
+#  - name: install epel-release
+#    yum:
+#      name: epel-release
+#      state: latest
+#  - name: install phpMyAdmin
+#    yum:
+#      name: remi-php56,phpMyAdmin
+#      state: latest
+#   - name: install MYSQL
+#     sudo: true
+#     action: shell sudo wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm

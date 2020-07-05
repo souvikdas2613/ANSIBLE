@@ -1,0 +1,19 @@
+---
+-name: Install Lamp stack
+ hosts: Test_Servers
+ become: True
+ become_user: root
+ gather_facts: true
+ task:
+  -name:"Install Apache2"
+   package:name=apache2 state=present
+  -name:"Install Apache2-php 5"
+   package:name=libapache2-mof-php5 state=present
+  -name:"Install php-cli"
+   package:name=php-cli state=present
+  -name:"Install php-gd"
+   package:name=php-gd state=present
+  -name:"Install php-mysql"
+   package:name=php-mysql state=present
+  -name:"Install mysql-server"
+   package:name=mysql-server state=present

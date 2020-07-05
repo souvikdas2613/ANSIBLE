@@ -1,0 +1,20 @@
+---
+- hosts: Test_Servers
+  become: yes
+  vars:
+     dbname: devops
+     dbuser: minut
+     dbpass: 12345
+  tasks:
+  - name: Update YML
+    yum: httpd
+  - name: Ensure mysql
+    yum: name=mysql-server state=present
+  - name: Mysql python install
+    pip: name=MySQL-python state=present
+  - name: Ensure it is running
+    service: name=mysqld state=started
+  - name: Create database
+    mysql_db: name={{dbname}} state=present
+  - name: Create user name
+    mysql_user: name={{dbuser}} password={{dbpass}} priv='*.*:ALL' state=present
